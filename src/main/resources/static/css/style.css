@@ -1,0 +1,12 @@
+body {
+	background-color: rgb(204, 204, 204, 0.5);
+	color: #505050;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration-color: #343a40;
+}

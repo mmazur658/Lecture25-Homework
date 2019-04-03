@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<link th:replace="parts/head"></link>
+    <title>Restaurant Menu</title>       
+</head>
+  <body>
+    <div class="container my-5">
+    	<p class="h1 text-center my-5">FANCY RESTAURANT</p>
+    	<p class="h4 text-center mt-5 pb-3">menu</p>
+    	
+	    <div class="row" >		    
+			<div class="col-md-8">
+				<form id="searchForm" action="/" method="GET">
+					<div class="row">					
+						<div class="col-md-6">
+							<input type="text" class="form-control my-1" id="name-input" name="name" placeholder="Nazwa">
+						</div>
+						<div class="col-md-6">
+							<select name=preparationTime class="form-control my-1">
+							    <option value="all" selected>Czas przygotowania</option>
+								<option th:each="prepTime: ${preparationTimes}" th:text="${prepTime.desc}" th:value="${prepTime}"></option>
+							</select>
+						</div>
+					</div>
+				</form> 				
+			</div>
+			<div class="col-md-2">
+				<button type="submit" form="searchForm" class="btn btn-block btn-secondary my-1"><i class="fas fa-search"></i></button>
+			</div>
+			
+			<div class="col-md-2">
+				<a href="/add-meal" class="btn btn-block btn-secondary my-1"><i class="fas fa-plus"></i></a>
+			</div>	
+	    </div> 	    	  	   
+    	
+    	<div class="container mx-4 mt-5">
+    		<hr>
+    		<div th:each="meal: ${meals}">
+		    	<div class="row">
+		    		<div class="col-md-9">
+		    			<a th:href="|/meal-details/${meal.id}|">
+		    				<p class="h5 text-dark" th:text="${meal.name}"></p>
+		    			</a>
+		    		</div>
+		    		<div class="col-md-3">
+		    			<p class="h5 text-dark text-center" th:text="|${#numbers.formatDecimal(meal.price, 0, 'COMMA', 2, 'POINT')} zł|"></p>
+		    		</div>
+		    	</div>
+		    	<div class="row">
+		    		<div class="col-md-12">
+		    			<p class="font-italic my-0" th:text="${meal.description}"></p>		    		 
+		    		</div>  
+		    	</div>
+		    	<div class="row">
+		    		<div class="col-md-12">
+		    			<p th:text="|Czas przygotowania: ${meal.preparationTime.desc}|"></p>		    		
+		    		</div>  
+		    	</div>
+		    	<hr>	    	
+	    	</div>		    	
+    	</div>
+    </div>    
+  </body>
+</html>

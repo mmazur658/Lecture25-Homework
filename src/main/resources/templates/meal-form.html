@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<link th:replace="parts/head"></link>
+	<title>Restaurant Menu - Formularz</title>  
+</head>
+  <body>
+    <div class="container my-5">
+    	<p class="h2 text-center my-5">FANCY RESTAURANT</p>
+    	<p class="h4 text-center mt-5 pb-3" th:text="${title}"></p>    	
+    	
+        <div class="w-75" style="margin: auto;">
+        <form id="mealForm" th:action="${action}" method="Post" th:object="${meal}" >
+        	<input type="hidden" th:field="*{id}">
+        	<hr>
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Nazwa:</p>
+				</div>
+				<div class="col-md-8">
+					<input type="text" class="form-control my-1" th:field="*{name}" required>
+				</div>		
+			</div>
+	    	<hr>
+
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Opis:</p>
+				</div>
+				<div class="col-md-8">
+					<input type="text" class="form-control my-1" th:field="*{description}" required>
+				</div>		
+			</div>
+	    	<hr>
+	    	
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Data dodania:</p>
+				</div>
+				<div class="col-md-8">
+					<input type="date" class="form-control my-1" th:field="*{dateOfAdded}" required>
+				</div>		
+			</div>
+	    	<hr>	    	
+	    	
+	    	<div class="row">
+				<div class="col-md-4">					
+					<p class="h5">Czas przygotowywania:</p>
+				</div>
+				<div class="col-md-8">	
+					<select th:field="*{preparationTime}" class="form-control">
+						<option th:each="prepTime: ${preparationTimes}" th:text="${prepTime.desc}" th:value="${prepTime}"></option>
+					</select>
+				</div>		
+			</div>
+	    	<hr>
+
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Cena:</p>
+				</div>
+				<div class="col-md-8">
+					<input type="number" step="0.01" class="form-control my-1" th:field="*{price}" required>
+					
+				</div>		
+			</div>
+	    	<hr>
+	    	</form>
+	    	<div class="row">
+				<div class="col-md-6">
+					<button form="mealForm" class="btn btn-block btn-secondary">OK</button>
+				</div>
+				<div class="col-md-6">
+					<button onclick="history.back()" class="btn btn-block btn-secondary">Powrót</button>
+				</div>		
+			</div>
+	    	
+		</div>
+	    	
+    	</div>		   	      
+  </body>
+</html>

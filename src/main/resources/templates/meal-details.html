@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<link th:replace="parts/head"></link>
+	<title>Restaurant Menu - Szczegóły dania</title>  
+</head>
+  <body>
+    <div class="container my-5">
+    	<p class="h2 text-center my-5">FANCY RESTAURANT</p>
+    	<p class="h4 text-center mt-5 pb-3">Szczegóły Dania</p>
+    	
+    	
+        <div class="w-75" style="margin: auto;">
+        
+        	<hr>
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Nazwa:</p>
+				</div>
+				<div class="col-md-8">
+					<p th:text="${meal.name}"></p>
+				</div>		
+			</div>
+	    	<hr>
+
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Opis:</p>
+				</div>
+				<div class="col-md-8">
+					<p th:text="${meal.description}"></p>
+				</div>		
+			</div>
+	    	<hr>
+	    	
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Data dodania:</p>
+				</div>
+				<div class="col-md-8">
+					<p th:text="${meal.dateOfAdded}"></p>
+				</div>		
+			</div>
+	    	<hr>	    	
+	    	
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Czas przygotowywania:</p>
+				</div>
+				<div class="col-md-8">					
+					 <p th:text="${meal.preparationTime.desc}"></p>
+				</div>		
+			</div>
+	    	<hr>
+
+	    	<div class="row">
+				<div class="col-md-4">
+					<p class="h5">Cena:</p>
+				</div>
+				<div class="col-md-8">
+					<p th:text="|${#numbers.formatDecimal(meal.price, 0, 'COMMA', 2, 'POINT')} zł|"></p>
+				</div>		
+			</div>
+	    	<hr>
+	    	
+	    	<div class="row">
+				<div class="col-md-6">
+					<a th:href="|/edit-meal/${meal.id}|" class="btn btn-block btn-secondary">Edycja</a>
+				</div>
+				<div class="col-md-6">
+					<a href="/" class="btn btn-block btn-secondary">Powrót</a>
+				</div>		
+			</div>
+	    	
+		</div>
+	    	
+    	</div>		   	      
+  </body>
+</html>
